@@ -255,6 +255,7 @@
     const musicBtn = document.getElementById('musicBtn');
     let player     = null;
     let playing    = false;
+    let userReady  = false; // true once the page has received any interaction
 
     function setPlaying(state) {
       playing = state;
@@ -262,8 +263,22 @@
       musicBtn.setAttribute('aria-label', state ? 'Pause music' : 'Play music');
     }
 
+    // On first interaction anywhere (click, tap, key) → start music.
+    // Browsers require a user gesture before audio can play.
+    function onFirstInteraction() {
+      userReady = true;
+      if (player && typeof player.playVideo === 'function') {
+        player.setVolume(80);
+        player.playVideo();
+      }
+    }
+
+    document.addEventListener('click',      onFirstInteraction, { once: true });
+    document.addEventListener('touchstart', onFirstInteraction, { once: true });
+    document.addEventListener('keydown',    onFirstInteraction, { once: true });
+
     // Load YouTube IFrame API
-    (function loadYT() {
+    (function () {
       const s = document.createElement('script');
       s.src   = 'https://www.youtube.com/iframe_api';
       document.head.appendChild(s);
@@ -273,19 +288,23 @@
       player = new YT.Player('yt-player', {
         videoId: '9H7Aj8pLQMQ',
         playerVars: {
-          autoplay:        1,
-          controls:        0,
-          loop:            1,
-          playlist:        '9H7Aj8pLQMQ',
-          playsinline:     1,
-          rel:             0,
-          modestbranding:  1,
-          fs:              0
+          autoplay:       1,
+          controls:       0,
+          loop:           1,
+          playlist:       '9H7Aj8pLQMQ',
+          playsinline:    1,
+          rel:            0,
+          modestbranding: 1,
+          fs:             0
         },
         events: {
           onReady: function (e) {
             e.target.setVolume(80);
+            // Try autoplay straight away — works on some browsers/desktop.
+            // If the user already interacted before the player finished
+            // loading, play immediately.
             e.target.playVideo();
+            if (userReady) e.target.playVideo();
           },
           onStateChange: function (e) {
             setPlaying(e.data === YT.PlayerState.PLAYING);
@@ -294,13 +313,10 @@
       });
     };
 
+    // Music button: explicit toggle
     musicBtn.addEventListener('click', function () {
       if (!player || typeof player.getPlayerState !== 'function') return;
-      if (playing) {
-        player.pauseVideo();
-      } else {
-        player.playVideo();
-      }
+      playing ? player.pauseVideo() : player.playVideo();
     });
   </script>
 
