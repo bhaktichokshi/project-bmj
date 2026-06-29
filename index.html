@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bhrugu Joshi</title>
+  <meta name="description" content="Motorsports engineer at Xtrac Ltd, UK. Transmission systems, gear design, powertrain work, and the JRS Racing Go Kart.">
+  <meta property="og:title" content="Bhrugu Joshi">
+  <meta property="og:description" content="Transmission systems. Gear design. Motorsports.">
+  <meta property="og:url" content="https://projectbmj.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="logo">BMJ</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#behind-bmj">Behind BMJ</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-inner">
+
+      <div class="hero-content">
+        <div class="hero-top">
+          <span class="hero-role">Transmission &amp; Powertrain Design</span>
+          <span class="hero-current">Xtrac Ltd &middot; UK</span>
+        </div>
+        <h1>Bhrugu<br>Joshi</h1>
+        <p class="hero-line">Motorsports engineer. Gear systems, engine design, and the kind of work that ends up on a racetrack.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-solid">See the work</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <!--
+          Planetary differential schematic — 3-planet epicyclic arrangement.
+          Geometry: sun r=70, planet r=70, ring pitch r=210.
+          Planet centres at r=140 from assembly centre, 120° apart.
+          stroke-dasharray 14/10 yields ~18 dashes on r=70 circles
+          and ~54 dashes on r=210 — matching real module-aligned tooth counts.
+        -->
+        <svg class="gear-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+          <!--
+            Carrier layer: ring gear + locus circle + carrier plate + planets.
+            Rotates 1 rev per 120s (carrier output speed).
+          -->
+          <g class="diff-carrier">
+
+            <!-- Planet centre locus (reference circle) -->
+            <circle cx="250" cy="250" r="140"
+                    stroke="currentColor" stroke-width="0.6"
+                    stroke-dasharray="3 9" opacity="0.35"/>
+
+            <!-- Ring gear: outer housing -->
+            <circle cx="250" cy="250" r="228"
+                    stroke="currentColor" stroke-width="2"/>
+
+            <!-- Ring gear: inner toothed surface (annulus) -->
+            <circle cx="250" cy="250" r="210"
+                    stroke="currentColor" stroke-width="4"
+                    stroke-dasharray="14 10"/>
+
+            <!-- Planet carrier: triangular plate -->
+            <polygon points="250,110 371,320 129,320"
+                     stroke="currentColor" stroke-width="1.5"/>
+
+            <!-- Planet carrier: spider arms -->
+            <line x1="250" y1="250" x2="250" y2="110"
+                  stroke="currentColor" stroke-width="1"/>
+            <line x1="250" y1="250" x2="371" y2="320"
+                  stroke="currentColor" stroke-width="1"/>
+            <line x1="250" y1="250" x2="129" y2="320"
+                  stroke="currentColor" stroke-width="1"/>
+
+            <!-- Planet gear 1 — top (250, 110) -->
+            <circle cx="250" cy="110" r="70"
+                    stroke="currentColor" stroke-width="2.5"
+                    stroke-dasharray="14 10"/>
+            <circle cx="250" cy="110" r="12"
+                    stroke="currentColor" stroke-width="1.5"/>
+
+            <!-- Planet gear 2 — lower left (129, 320) -->
+            <circle cx="129" cy="320" r="70"
+                    stroke="currentColor" stroke-width="2.5"
+                    stroke-dasharray="14 10"/>
+            <circle cx="129" cy="320" r="12"
+                    stroke="currentColor" stroke-width="1.5"/>
+
+            <!-- Planet gear 3 — lower right (371, 320) -->
+            <circle cx="371" cy="320" r="70"
+                    stroke="currentColor" stroke-width="2.5"
+                    stroke-dasharray="14 10"/>
+            <circle cx="371" cy="320" r="12"
+                    stroke="currentColor" stroke-width="1.5"/>
+
+          </g>
+
+          <!--
+            Sun gear layer: rotates 4× carrier speed (ring-fixed epicyclic
+            ratio: ω_sun = ω_carrier × (N_sun + N_ring) / N_sun = × 4).
+            1 rev per 30s.
+          -->
+          <g class="diff-sun">
+            <circle cx="250" cy="250" r="70"
+                    stroke="currentColor" stroke-width="2.5"
+                    stroke-dasharray="14 10"/>
+            <circle cx="250" cy="250" r="24"
+                    stroke="currentColor" stroke-width="2"/>
+            <circle cx="250" cy="250" r="11"
+                    stroke="currentColor" stroke-width="1.5"/>
+            <line x1="250" y1="236" x2="250" y2="264"
+                  stroke="currentColor" stroke-width="1"/>
+            <line x1="236" y1="250" x2="264" y2="250"
+                  stroke="currentColor" stroke-width="1"/>
+          </g>
+
+        </svg>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About + Behind BMJ in one visual block -->
+  <section id="about" class="section">
+    <div class="wrap">
+      <div class="about-cols">
+
+        <div class="about-col reveal">
+          <h2>About</h2>
+          <p>Bhrugu designs transmission components for racing cars. He is part of the engineering team at <strong>Xtrac Ltd</strong> in the UK, a company that builds gearboxes used in Formula One, Le Mans prototypes, and WRC cars. His work covers gear design, load analysis, and getting components from drawing to dyno.</p>
+          <p>He has also filed patents on original mechanical work and built the JRS Racing Go Kart as a full project from the ground up.</p>
+          <p class="skills-line">Gear Design &nbsp;&middot;&nbsp; Engine Design &nbsp;&middot;&nbsp; CAD / CAM &nbsp;&middot;&nbsp; Powertrain Systems &nbsp;&middot;&nbsp; Patents</p>
+        </div>
+
+        <div class="about-col reveal" id="behind-bmj">
+          <h2>Behind BMJ</h2>
+          <p>BMJ is not a company yet. It is where ideas live before they are ready to be one. Bhrugu wants to start something in motorsports engineering, and this site is part of building the relationships that make that possible.</p>
+          <p>If you work in motorsports and want to talk engineering, or if you have a project that needs someone who thinks in gear ratios and tolerances, he wants to hear from you.</p>
+          <p>Everything on this site is his own work. No agency. No template. Just what he has actually built and designed.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <div class="wrap">
+      <h2 class="section-h reveal">Projects</h2>
+
+      <article class="project-feature reveal">
+        <div class="pf-img">
+          <div class="ph p-kart" role="img" aria-label="JRS Racing Go Kart"></div>
+        </div>
+        <div class="pf-body">
+          <span class="proj-num">01</span>
+          <h3>JRS Racing Go Kart</h3>
+          <p>Built from scratch. Chassis, powertrain integration, weight distribution, suspension geometry, and track testing. Every call documented and iterated through real laps.</p>
+          <ul class="proj-list">
+            <li>Full powertrain design and integration</li>
+            <li>Custom chassis geometry</li>
+            <li>Weight-optimised component spec</li>
+            <li>Track-tested through multiple builds</li>
+          </ul>
+        </div>
+      </article>
+
+      <div class="proj-grid">
+        <article class="proj-card reveal">
+          <div class="ph p-gears" role="img" aria-label="Gear design work"></div>
+          <div class="proj-card-body">
+            <span class="proj-num">02</span>
+            <h3>Gear Design</h3>
+            <p>Transmission gear systems for motorsports. Load capacity, efficiency, packaging.</p>
+          </div>
+        </article>
+        <article class="proj-card reveal">
+          <div class="ph p-engine" role="img" aria-label="Engine design work"></div>
+          <div class="proj-card-body">
+            <span class="proj-num">03</span>
+            <h3>Engine Design</h3>
+            <p>Powertrain design covering combustion analysis, thermal management, and component integration.</p>
+          </div>
+        </article>
+        <article class="proj-card reveal">
+          <div class="ph p-patent" role="img" aria-label="Patented design work"></div>
+          <div class="proj-card-body">
+            <span class="proj-num">04</span>
+            <h3>Patented Work</h3>
+            <p>Original mechanical solutions filed as patents. Novel designs built for real performance problems.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section contact-section">
+    <div class="wrap">
+      <div class="contact-cols">
+
+        <div class="contact-left reveal">
+          <h2>Get In Touch</h2>
+          <p>For engineering collaborations, motorsports projects, or to start a conversation about what you are working on.</p>
+          <div class="contact-direct">
+            <a href="mailto:joshibhrugu0607@gmail.com" class="contact-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+              joshibhrugu0607@gmail.com
+            </a>
+            <a href="https://www.linkedin.com/in/bhrugujoshi/" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              linkedin.com/in/bhrugujoshi
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-right reveal">
+          <form id="contactForm" action="https://formspree.io/f/FORM_ID" method="POST" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cname">Name</label>
+                <input type="text" id="cname" name="name" required placeholder="Your name" autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label for="cemail">Email</label>
+                <input type="email" id="cemail" name="email" required placeholder="your@email.com" autocomplete="email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cmessage">Message</label>
+              <textarea id="cmessage" name="message" rows="4" required placeholder="What are you working on?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-solid btn-full" id="submitBtn">Send</button>
+            <p class="form-status" id="formStatus" aria-live="polite"></p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span class="footer-logo">BMJ</span>
+      <nav aria-label="Footer navigation">
+        <a href="#about">About</a>
+        <a href="#behind-bmj">Behind BMJ</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; <span id="year"></span> Bhrugu Joshi</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
